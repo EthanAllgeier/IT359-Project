@@ -1,1 +1,29 @@
-This is the requiremnts page we just need to put on here what is required to do our project 
+
+Requirements
+Hardware Requirements
+ESP32 Marauder device (ESP32 development board flashed with Marauder firmware)
+USB cable for flashing and powering the device
+Computer (Windows, macOS, or Linux)
+Wi-Fi network for testing
+(Must be a network you have permission to test.)
+
+Software Requirements
+ESP32 Marauder Firmware
+(Prebuilt firmware or downloaded from the Marauder GitHub repository)
+Evil Portal addon
+Used for building and hosting the fake login page
+Web browser (Chrome, Firefox, Safari, etc.)
+Serial monitor or flashing tool, such as:
+VSCode with the ESP32 plugin
+
+Libraries / Dependencies
+(These are the dependencies commonly required to flash/configure the ESP32 Marauder)
+esptool.py
+ESP32 board support package
+Python 3.x (if using esptool)
+Arduino-ESP32 Core (only if flashing using Arduino IDE)
+
+Network Requirements
+Ability to scan local Wi-Fi networks
+Permission to demonstrate cloning a test SSID
+Device that can connect to Wi-Fi (victim simulation)
