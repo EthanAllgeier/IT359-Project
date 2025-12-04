@@ -10,7 +10,7 @@ A usage guide with examples.
 
 
 Evil Twin Attack – Fossil Fanatics
-📌 Project Purpose
+Project Purpose
 This project demonstrates how an Evil Twin Wi-Fi attack works using an ESP32 Marauder and a custom Evil Portal phishing page.
 An Evil Twin attack occurs when an attacker creates a fake Wi-Fi network that looks identical to a legitimate one (e.g., “isunet”) to trick users into connecting.
 Once connected, the attacker can capture login attempts and observe network traffic.
@@ -50,7 +50,7 @@ The device will be redirected to your fake login page
 Entered credentials appear in the Evil Portal logs
 Demonstrate how users can be tricked into giving up sensitive information
 
-📖 Usage Guide + Examples
+Usage Guide + Examples
 Example: Cloning a University Login Page
 Team recreated the layout
 
