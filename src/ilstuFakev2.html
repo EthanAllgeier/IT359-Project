@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Central Login</title>
+<style>
+  :root{
+    --red:#CE1126;
+    --red-dark:#a60e1e;
+    --muted:#666666;
+    --bg:#f0f2f5;
+    --card-bg:#ffffff;
+    --footer-bg:#f8f9fa;
+    --shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+  html,body{height:100%;margin:0;font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif; background:var(--bg);color:#1b1b1b}
+  
+  .wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+  .container { position:relative; width:100%; max-width:440px; margin: 0 auto; }
+  
+  .card{
+    width:100%;
+    background:var(--card-bg);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    position:relative;
+    z-index:3;
+    margin-bottom: 20px;
+  }
+
+  .card-body{ padding: 44px 44px 20px 44px; }
+
+  /* RECONSTRUCTED BRANDING (No Image Files) */
+  .brand { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+  
+  .brand-icon {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+  }
+  
+  .brand-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      line-height: 1.1;
+  }
+  
+  .uni-text {
+      font-size: 14px;
+      color: #333;
+      font-weight: 400;
+      margin-bottom: 2px;
+      font-family: "Segoe UI", sans-serif;
+  }
+  
+  .login-text {
+      font-size: 26px;
+      color: #212529;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+  }
+
+  .signin-title{font-size:24px; margin:16px 0; font-weight:600;}
+
+  .form-group{ margin-top: 10px; }
+  .field{display:flex;flex-direction:column;margin-bottom:16px; position: relative;}
+  
+  .input-underline{
+    border:0; border-bottom:1px solid #666; padding:8px 0; font-size:15px;
+    outline:none; background:transparent; width:100%; border-radius: 0;
+  }
+  .input-underline:focus{border-bottom-color:var(--red); border-bottom-width: 2px;}
+  .field ::placeholder { color: #666; opacity: 0.8; }
+
+  .forgot{display:inline-block; margin-top:0px; color:#0067b8; text-decoration:none; font-size:13px;}
+  .forgot:hover{text-decoration: underline;}
+
+  .actions{display:flex; justify-content:flex-end; gap:10px; margin-top: 30px; align-items: center;}
+  
+  .btn-back{background:#e1e1e1; border-radius:0; padding:8px 32px; border:0; color:#000; cursor:pointer; font-size: 15px;}
+  .btn-next{background:var(--red); border-radius:0; padding:8px 32px; border:0; color:#fff; cursor:pointer; font-size: 15px; min-width: 108px;}
+  .btn-next:hover{background:var(--red-dark);}
+
+  .card-footer{ background: var(--footer-bg); padding: 20px 44px; color: #212529; font-size: 13px; line-height: 1.5; }
+  .card-footer p { margin: 0; }
+
+  .options-wrap{ display: flex; justify-content: center; width: 100%; margin-top: 20px; position: relative; z-index: 3; }
+  .options-pill{
+    background:#fff; box-shadow: 0 2px 5px rgba(0,0,0,0.15); padding:10px 20px;
+    display:flex; align-items:center; gap:10px; cursor: pointer; border-radius: 2px;
+    width: 100%; max-width: 100%; border: 1px solid #fff;
+  }
+  .options-pill:hover { background: #fdfdfd; }
+  
+  /* SVG ICONS */
+  .key-svg { width: 32px; height: 32px; display: block; }
+  .lock-svg { width: 100%; height: 100%; display: block; fill: var(--red); }
+  .text { font-size: 15px; color: #1b1b1b; }
+
+  /* Background needs to stay fixed */
+  .bg-layer { position:fixed; top:0; left:0; width:100%; height:100%; z-index:1; pointer-events:none; object-fit: cover; }
+  
+  .result{display:none; padding:10px; margin-top:20px; color:#064e3b; background:#ecfdf5; border:1px solid #bbf7d0; font-size: 13px;}
+
+  @media (max-width:480px){
+    .card-body, .card-footer { padding: 30px 20px; }
+    .container{ width: 95%; }
+  }
+</style>
+</head>
+<body>
+
+  <svg class="bg-layer" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1920 1080">
+    <defs>
+       <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+         <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+         <stop offset="100%" style="stop-color:#e6e6e6;stop-opacity:1" />
+       </linearGradient>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grad1)"/>
+    <path fill="#f4f4f4" d="M0 0 L1920 0 L1920 800 L0 400 Z" />
+    <path fill="#e8e8e8" opacity="0.5" d="M0 1080 L960 500 L1920 1080 Z" />
+  </svg>
+
+  <div class="wrap">
+    <div class="container">
+      
+      <div class="card" role="main">
+        <div class="card-body">
+            
+            <div class="brand">
+                <div class="brand-icon">
+                   <svg class="lock-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 17C13.1 17 14 16.1 14 15C14 13.9 13.1 13 12 13C10.9 13 10 13.9 10 15C10 16.1 10.9 17 12 17ZM18 8H17V6C17 3.24 14.76 1 12 1C9.24 1 7 3.24 7 6V8H6C4.9 8 4 8.9 4 10V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V10C20 8.9 19.1 8 18 8ZM8.9 6C8.9 4.29 10.29 2.9 12 2.9C13.71 2.9 15.1 4.29 15.1 6V8H8.9V6ZM18 20H6V10H18V20Z"/>
+                   </svg>
+                </div>
+                <div class="brand-text">
+                    <span class="uni-text">Illinois State University</span>
+                    <span class="login-text">Central Login</span>
+                </div>
+            </div>
+
+            <h1 id="signin-heading" class="signin-title">Sign in</h1>
+
+            <div class="form-group">
+                <div class="field">
+                    <input id="email" name="email" type="text" class="input-underline" placeholder="ULID@ilstu.edu" autocomplete="email" />
+                </div>
+                <div class="field">
+                    <input id="password" name="password" type="password" class="input-underline" placeholder="Password" autocomplete="current-password" />
+                </div>
+                <a href="#" class="forgot" id="forgotLink">Forgot your Illinois State email?</a>
+            </div>
+
+            <div class="actions">
+                <button class="btn-back" id="btnBack" type="button">Back</button>
+                <button class="btn-next" id="btnNext" type="button">Next</button>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <p>Use your Illinois State University email to sign in &lt;ULID@ilstu.edu&gt;. If you are having trouble signing in to your Illinois State University account, please contact the Technology Support Center at (309) 438-4357.<br> CAUTION: Please don't input any real credentials into the fields. This is a FAKE portal for an IT 359 Project.</p>
+        </div>
+      </div>
+
+      <div class="options-wrap">
+        <div class="options-pill" role="button" tabindex="0">
+            <svg class="key-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+               <path fill="#333" d="M12.45,39.35l-2.2,2.2L1,32.4l14-14c-1-2.55-0.95-5.5,0.4-8.05c1.8-3.4,5.4-5.6,9.25-5.6c0.55,0,1.15,0.05,1.7,0.15 c4.55,0.85,8.15,4.45,9,9c0.1,0.55,0.15,1.15,0.15,1.7c0,3.85-2.2,7.45-5.6,9.25c-2.55,1.35-5.5,1.4-8.05,0.4l-3.35,3.35 l2.2,2.2l-3.15,3.15l-3.2-3.2l-2.2,2.2l3.2,3.2L12.45,39.35z M25.4,11.75c0-1.65,1.35-3,3-3s3,1.35,3,3s-1.35,3-3,3 S25.4,13.4,25.4,11.75z"/>
+            </svg>
+            <span class="text">Sign-in options</span>
+        </div>
+      </div>
+
+      <div id="result" class="result"></div>
+    </div>
+  </div>
+
+<script>
+  (function(){
+    const btnNext = document.getElementById('btnNext');
+    const emailEl = document.getElementById('email');
+    const pwEl = document.getElementById('password');
+    const result = document.getElementById('result');
+
+    btnNext.addEventListener('click', function(){
+      const email = (emailEl.value || '').trim();
+      const pw = pwEl.value || '';
+      
+      if(!email || !email.includes('@')){
+        alert('Please enter a valid ULID@ilstu.edu email.');
+        return;
+      }
+      if(pw.length < 1){
+        alert('Please enter a password.');
+        return;
+      }
+      console.log("Captured:", email, pw);
+      result.textContent = "Data captured: " + email;
+      result.style.display = "block";
+      pwEl.value = "";
+    });
+    
+    window.addEventListener('load', ()=>{ emailEl.focus(); });
+  })();
+</script>
+</body>
+</html>

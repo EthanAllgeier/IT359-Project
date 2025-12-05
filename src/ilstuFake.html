@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Central Login — Mock (ISU Style)</title>
+<style>
+  :root{
+    --red:#CE1126; /* ISU Red */
+    --red-dark:#a60e1e;
+    --muted:#666666;
+    --bg:#f0f2f5;
+    --card-bg:#ffffff;
+    --footer-bg:#f8f9fa; /* Grey bottom area */
+    --shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+  html,body{height:100%;margin:0;font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif; background:var(--bg);color:#1b1b1b}
+  
+  .wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+  .container { position:relative; width:100%; max-width:440px; margin: 0 auto; }
+  
+  /* MAIN CARD */
+  .card{
+    width:100%;
+    background:var(--card-bg);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    position:relative;
+    z-index:3;
+    margin-bottom: 20px;
+  }
+
+  /* TOP WHITE AREA */
+  .card-body{ padding: 44px 44px 20px 44px; }
+
+  /* BRANDING */
+  .brand{
+    display:flex;
+    align-items:flex-start;
+    margin-bottom: 10px;
+  }
+  
+  /* Controls the logo size so it fits perfectly */
+  .brand-logo {
+      width: 100%;
+      max-width: 280px; 
+      height: auto;
+      display: block;
+  }
+
+  .signin-title{font-size:24px; margin:16px 0; font-weight:600;}
+
+  /* FORMS */
+  .form-group{ margin-top: 10px; }
+  .field{display:flex;flex-direction:column;margin-bottom:16px; position: relative;}
+  
+  /* Inputs styled like underlines */
+  .input-underline{
+    border:0;
+    border-bottom:1px solid #666;
+    padding:8px 0;
+    font-size:15px;
+    outline:none;
+    background:transparent; 
+    width:100%;
+    border-radius: 0;
+  }
+  .input-underline:focus{border-bottom-color:var(--red); border-bottom-width: 2px;}
+  .field ::placeholder { color: #666; opacity: 0.8; }
+
+  .forgot{display:inline-block; margin-top:0px; color:#0067b8; text-decoration:none; font-size:13px;}
+  .forgot:hover{text-decoration: underline;}
+
+  /* BUTTONS */
+  .actions{display:flex; justify-content:flex-end; gap:10px; margin-top: 30px; align-items: center;}
+  
+  .btn-back{background:#e1e1e1; border-radius:0; padding:8px 32px; border:0; color:#000; cursor:pointer; font-size: 15px;}
+  .btn-back:hover{background:#d0d0d0;}
+
+  .btn-next{background:var(--red); border-radius:0; padding:8px 32px; border:0; color:#fff; cursor:pointer; font-size: 15px; min-width: 108px;}
+  .btn-next:hover{background:var(--red-dark);}
+
+  /* GREY FOOTER INFO AREA */
+  .card-footer{
+    background: var(--footer-bg);
+    padding: 20px 44px;
+    color: #212529;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .card-footer p { margin: 0; }
+
+  /* SIGN IN OPTIONS PILL */
+  .options-wrap{ 
+    display: flex; 
+    justify-content: center; 
+    width: 100%; 
+    margin-top: 20px;
+    position: relative;
+    z-index: 3;
+  }
+  .options-pill{
+    background:#fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    padding:10px 20px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    cursor: pointer;
+    border-radius: 2px;
+    width: 100%;
+    max-width: 100%;
+    border: 1px solid #fff;
+  }
+  .options-pill:hover { background: #fdfdfd; }
+  
+  /* This targets your key image to size it correctly */
+  .options-pill .key-icon { width: 32px; height: 32px; display: block; }
+  .options-pill .text { font-size: 15px; color: #1b1b1b; }
+
+  /* BACKGROUND SVG LAYER */
+  .bg-layer {
+    position:fixed; top:0; left:0; width:100%; height:100%; z-index:1; pointer-events:none;
+    object-fit: cover;
+  }
+
+  /* Result Box for Demo */
+  .result{display:none; padding:10px; margin-top:20px; color:#064e3b; background:#ecfdf5; border:1px solid #bbf7d0; font-size: 13px;}
+
+  @media (max-width:480px){
+    .card-body, .card-footer { padding: 30px 20px; }
+    .container{ width: 95%; }
+  }
+</style>
+</head>
+<body>
+
+  <svg class="bg-layer" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1920 1080">
+    <defs>
+       <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+         <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+         <stop offset="100%" style="stop-color:#e6e6e6;stop-opacity:1" />
+       </linearGradient>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grad1)"/>
+    <path fill="#f4f4f4" d="M0 0 L1920 0 L1920 800 L0 400 Z" />
+    <path fill="#e8e8e8" opacity="0.5" d="M0 1080 L960 500 L1920 1080 Z" />
+  </svg>
+
+  <div class="wrap">
+    <div class="container">
+      
+      <div class="card" role="main" aria-labelledby="signin-heading">
+        
+        <div class="card-body">
+            
+            <div class="brand">
+                <img src="https://aadcdn.msauthimages.net/dbd5a2dd-cp7r4fannpw-f5y8b-tmhwab2yzk8g52j6oskb-opou/logintenantbranding/0/bannerlogo?ts=638664238421961788" alt="Illinois State University Central Login" class="brand-logo">
+            </div>
+
+            <h1 id="signin-heading" class="signin-title">Sign in</h1>
+
+            <div class="form-group">
+                <div class="field">
+                    <input id="email" name="email" type="text" class="input-underline" placeholder="ULID@ilstu.edu" autocomplete="email" />
+                </div>
+
+                <div class="field">
+                    <input id="password" name="password" type="password" class="input-underline" placeholder="Password" autocomplete="current-password" />
+                </div>
+
+                <a href="#" class="forgot" id="forgotLink">Forgot your Illinois State email?</a>
+            </div>
+
+            <div class="actions">
+                <button class="btn-back" id="btnBack" type="button">Back</button>
+                <button class="btn-next" id="btnNext" type="button">Next</button>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <p>Use your Illinois State University email to sign in &lt;ULID@ilstu.edu&gt;. If you are having trouble signing in to your Illinois State University account, please contact the Technology Support Center at (309) 438-4357. <br> CAUTION: Please do not put any real credentials into the login fields. This is a fake portal for IT 359.</p>
+            <p style="margin-top:10px; font-style:italic; opacity:0.7; font-size:11px;">(IT 359 Project: Demo Only)</p>
+        </div>
+
+      </div>
+
+      <div class="options-wrap">
+        <div class="options-pill" role="button" tabindex="0">
+            <img class="key-icon" src="https://aadcdn.msauth.net/shared/1.0/content/images/signin-options_3e3f6b73c3f310c31d2c4d131a8ab8c6.svg" alt="Sign-in options">
+            <span class="text">Sign-in options</span>
+        </div>
+      </div>
+
+      <div id="result" class="result"></div>
+
+    </div>
+  </div>
+
+<script>
+  // PURELY LOCAL DEMO BEHAVIOR
+  (function(){
+    const btnNext = document.getElementById('btnNext');
+    const btnBack = document.getElementById('btnBack');
+    const result = document.getElementById('result');
+    const emailEl = document.getElementById('email');
+    const pwEl = document.getElementById('password');
+
+    function showResult(text){
+      result.style.display = 'block';
+      result.textContent = text;
+      // Clear sensitive inputs immediately
+      if(pwEl) pwEl.value = '';
+      console.log({event:'mock-signin', ts: new Date().toISOString()});
+    }
+
+    btnNext.addEventListener('click', function(){
+      const email = (emailEl.value || '').trim();
+      const pw = pwEl.value || '';
+      
+      if(!email || !email.includes('@')){
+        alert('Please enter a valid ULID@ilstu.edu email.');
+        emailEl.focus();
+        return;
+      }
+      if(pw.length < 1){
+        alert('Please enter a password (demo).');
+        pwEl.focus();
+        return;
+      }
+      showResult(`Simulation Complete: Data captured for demo (Email: ${email}). No network request made.`);
+    });
+
+    btnBack.addEventListener('click', function(){
+      emailEl.value = '';
+      pwEl.value = '';
+      result.style.display = 'none';
+      emailEl.focus();
+    });
+
+    [emailEl, pwEl].forEach(el=>{
+      el.addEventListener('keydown', function(e){
+        if(e.key === 'Enter'){ btnNext.click(); e.preventDefault(); }
+      });
+    });
+
+    window.addEventListener('load', ()=>{ emailEl.focus(); });
+  })();
+</script>
+</body>
+</html>
