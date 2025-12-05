@@ -52,3 +52,5 @@ When a victim clicks the fake Wi-Fi network:
 They see a login page identical to the real one
 They may enter credentials without noticing the difference
 The attacker receives the submitted data instantly
+
+We followed https://github.com/justcallmekoko/ESP32Marauder/wiki/evil-portal-workflow to help with any issues faced during the project.
