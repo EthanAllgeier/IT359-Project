@@ -22,7 +22,7 @@ Evil Portal (for hosting fake login pages)
 GitHub Evil Portal workflow (to create and upload pages)
 Any HTML/CSS editor (for designing fake login page)
 
-Setup & Execution Instructions \
+Setup & Execution Instructions
 1. Flash ESP32 Marauder
 Download the ESP32 Marauder firmware
 Connect the ESP32 to your computer
