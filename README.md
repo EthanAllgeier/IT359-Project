@@ -26,17 +26,17 @@ Setup & Execution Instructions
 Download the ESP32 Marauder firmware
 Connect the ESP32 to your computer
 Flash the firmware using the provided flashing tool
-2. Load the Evil Portal
-Open the Evil Portal workflow on GitHub
-Upload or paste your phishing login page HTML/CSS
-Deploy the portal to the ESP32 device
-3. Create the Evil Twin Network
-Power on the ESP32
-Access the Marauder interface
-Scan for nearby Wi-Fi networks
-Select the target SSID (example: isunet)
-Choose “Clone / Evil Twin”
-Start broadcasting the fake access point
+2. Create and Upload the Evil Portal Page
+Use any HTML/CSS editor to design your phishing-style login page.
+Save your page as an .html file.
+Insert the MicroSD card into your computer.
+Upload the .html file to the SD card inside the portal directory (or root, depending on Marauder version).
+Insert the SD card back into the Marauder.
+3. Configure Evil Portal Settings on Marauder
+Power on the ESP32 Marauder.
+Navigate to the Evil Portal section in the Marauder interface.
+Select your uploaded HTML page from the available portal files.
+Save or confirm your choice so Marauder knows which page to serve.
 4. Run the Attack Demo
 Connect a test device to the cloned SSID
 The device will be redirected to your fake login page
