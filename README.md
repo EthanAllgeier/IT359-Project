@@ -15,11 +15,12 @@ Hardware \
 ESP32 Marauder device
 Computer with USB connection
 Wi-Fi network for testing
+sd card
 Software \
 ESP32 Marauder Firmware
 Evil Portal (for hosting fake login pages)
 GitHub Evil Portal workflow (to create and upload pages)
-Any HTML/CSS editor (for designing fake login page
+Any HTML/CSS editor (for designing fake login page)
 
 Setup & Execution Instructions \
 1. Flash ESP32 Marauder
@@ -44,13 +45,13 @@ Entered credentials appear in the Evil Portal logs
 Demonstrate how users can be tricked into giving up sensitive information
 
 Usage Guide + Examples \
-Example: Cloning a University Login Page
+Example: Cloning a University Login Page \
 Team recreated the layout
 
 Example: What a Victim Sees \
 When a victim clicks the fake Wi-Fi network:
 They see a login page identical to the real one
 They may enter credentials without noticing the difference
-The attacker receives the submitted data instantly
+The attacker receives the submitted data instantly, or in our case, it just prints to the browser's console.
 
 We followed https://github.com/justcallmekoko/ESP32Marauder/wiki/evil-portal-workflow to help with any issues faced during the project.
